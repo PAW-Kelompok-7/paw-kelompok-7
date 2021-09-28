@@ -19,10 +19,10 @@ Endpoint yang tersedia:
  - PUT /menu/:kode
  - DELETE /menu/:kode
  - GET /karyawan
- - GET /karyawan/:kode
+ - GET /karyawan/:id
  - POST /karyawan
- - PUT /karyawan/:kode
- - DELETE /karyawan/:kode`;
+ - PUT /karyawan/:id
+ - DELETE /karyawan/:id`;
 
     response.type("txt").send(helpText);
 });
