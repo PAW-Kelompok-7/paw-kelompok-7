@@ -1,4 +1,6 @@
 # Tugas CRUD Pengembangan Aplikasi Web
+##CRUD Restoran APP
+API ini menggunakan web framework Express, backend Node.js, dan database SQLite. Web application yang dirancang adalah aplikasi restoran yang akan menampilkan daftar menu dan daftar karyawan pada suatu restoran.
 
 Kelompok 7:
 1. Farhan Dzaky Ananda         (19/440886/TK/48680) 
