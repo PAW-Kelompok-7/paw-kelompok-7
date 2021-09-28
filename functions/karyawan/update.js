@@ -1,15 +1,17 @@
-/**
- *  @param {import("express").Express} app 
- *  @param {import("sqlite3").Database} db
- */
+/** @type {Func} */
 export default function (app, db) {
-    app.put("/karyawan/:kode", function (request, response) {
+    app.put("/karyawan/:id", function (request, response) {
         const { nama, tahun_masuk, jabatan } = request.body;
-        const { kode } = request.params;
+        const { id } = request.params;
 
-        db.run('UPDATE karyawan SET nama=?, tahun_masuk=?, jabatan=? WHERE kode=?', [nama, tahun_masuk, jabatan, kode], function(err) {
-            const statusCode = err ? 500 : 200;
-            response.status(statusCode).end();
+        db.run('UPDATE karyawan SET nama=?, tahun_masuk=?, jabatan=? WHERE id=?', [nama, tahun_masuk, jabatan, id], function(err) {
+            if (err) {
+                console.error(err);
+                response.status(500).end();
+                return;
+            }
+
+            response.end();
         });
     });
 }

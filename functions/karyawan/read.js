@@ -1,16 +1,14 @@
-/**
- *  @param {import("express").Express} app 
- *  @param {import("sqlite3").Database} db
- */
+/** @type {Func} */
 export default function (app, db) {
     app.get("/karyawan", function (request, response) {
         db.all("SELECT * FROM karyawan", function (err, result) {
             if (err) {
+                console.error(err);
                 response.status(500).end();
                 return;
             }
 
-            response.status(200).json(result);
+            response.json(result);
         });
     });
 
@@ -19,6 +17,7 @@ export default function (app, db) {
 
         db.all("SELECT * FROM karyawan WHERE id=?", id, function (err, result) {
             if (err) {
+                console.error(err);
                 response.status(500).end();
                 return;
             }
@@ -28,8 +27,7 @@ export default function (app, db) {
                 return;
             }
 
-            response.status(200).json(result[0]);
+            response.json(result[0]);
         });
     })
 }
-

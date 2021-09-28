@@ -1,14 +1,16 @@
-/**
- *  @param {import("express").Express} app 
- *  @param {import("sqlite3").Database} db
- */
+/** @type {Func} */
 export default function (app, db) {
     app.delete("/menu/:kode", function (request, response) {
         const { kode } = request.params;
 
         db.run("DELETE FROM menu WHERE kode=?", kode, function (err) {
-            const statusCode = err ? 500 : 200;
-            response.status(statusCode).end();
+            if (err) {
+                console.error(err);
+                response.status(500).end();
+                return;
+            }
+
+            response.end();
         })
     });
 }

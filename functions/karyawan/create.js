@@ -1,9 +1,6 @@
-import { JABATAN } from "../../constants.js";
+import { JABATAN } from "../../utils/constants.js";
 
-/**
- *  @param {import("express").Express} app 
- *  @param {import("sqlite3").Database} db
- */
+/** @type {Func} */
 export default function (app, db) {
     app.post("/karyawan", function (request, response) {
         const { nama, tahun_masuk, jabatan } = request.body;
@@ -11,6 +8,7 @@ export default function (app, db) {
         if (!JABATAN.includes(jabatan)) {
             response
                 .status(400)
+                .type("txt")
                 .send(`Jabatan tidak memenuhi. Jabatan-jabatan yang memungkinkan: ${JABATAN.join(", ")}`)
                 .end();
             return;
@@ -31,8 +29,13 @@ export default function (app, db) {
             tahun_masuk ?? currentYear,
             jabatan
         ], function (err) {
-            const statusCode = err ? 500 : 201;
-            response.status(statusCode).end();
+            if (err) {
+                console.error(err);
+                response.status(500).end();
+                return;
+            }
+
+            response.status(201).end();
         });
     });
 }
