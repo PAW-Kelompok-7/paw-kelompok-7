@@ -1,14 +1,37 @@
+import { JABATAN } from "../../constants.js";
+
 /**
  *  @param {import("express").Express} app 
  *  @param {import("sqlite3").Database} db
  */
-
 export default function (app, db) {
     app.post("/karyawan", function (request, response) {
-        const { id, nama, tahun_masuk, jabatan } = request.body;
+        const { nama, tahun_masuk, jabatan } = request.body;
 
-        db.run("INSERT INTO karyawan (id, nama, tahun_masuk, jabatan) VALUES (?, ?, ?, ?)", [id, nama, tahun_masuk, jabatan], function (err, result) {
-            const statusCode = err ? 400 : 200;
+        if (!JABATAN.includes(jabatan)) {
+            response
+                .status(400)
+                .send(`Jabatan tidak memenuhi. Jabatan-jabatan yang memungkinkan: ${JABATAN.join(", ")}`)
+                .end();
+            return;
+        }
+
+        const currentYear = new Date().getFullYear();
+
+        if (tahun_masuk < 1900 || tahun_masuk > currentYear) {
+            response
+                .status(400)
+                .send("Tahun masuk di luar batas.")
+                .end();
+            return;
+        }
+
+        db.run("INSERT INTO karyawan (nama, tahun_masuk, jabatan) VALUES (?, ?, ?)", [
+            nama,
+            tahun_masuk ?? currentYear,
+            jabatan
+        ], function (err) {
+            const statusCode = err ? 500 : 201;
             response.status(statusCode).end();
         });
     });

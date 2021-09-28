@@ -1,13 +1,14 @@
-import sqlite3Stock from "sqlite3";
+import sqlite3 from "sqlite3";
+import { JABATAN } from "./constants.js";
 
-const sqlite3 = sqlite3Stock.verbose();
+const sqlite = sqlite3.verbose();
 
-const db = new sqlite3.Database("./restoran.db");
+const db = new sqlite.Database("./restoran.db");
 
 db.serialize(
     function () {
         db.run(`CREATE TABLE IF NOT EXISTS menu (
-            nomor           INTEGER         PRIMARY KEY,
+            kode            INTEGER         PRIMARY KEY,
             nama            VARCHAR(255)    NOT NULL,
             harga_rp        INT             NOT NULL
         )`);
@@ -25,7 +26,7 @@ db.serialize(
             FOREIGN KEY (jabatan) REFERENCES jabatan(nama)
         )`);
 
-        db.run(`INSERT INTO jabatan (nama) VALUES ("manajer"), ("pelayan"), ("chef")`);
+        db.run(`INSERT INTO jabatan (nama) VALUES ${JABATAN.map((nama) => `("${nama}")`).join(", ")}`);
     }
 );
 
