@@ -27,7 +27,7 @@ Endpoint yang tersedia:
     response.type("txt").send(helpText);
 });
 
-endpointHandlers(app, db);
+await endpointHandlers(app, db);
 
 // Start the web server
 app.listen(PORT, function () {
