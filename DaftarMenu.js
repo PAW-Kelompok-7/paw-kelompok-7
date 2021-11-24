@@ -38,19 +38,6 @@ const DaftarMenu = () => {
                     </tr> 
                     ))}   
                 </tbody>
-
-                <tbody>
-                        <tr >
-                        <td>1</td>
-                        <td>es jeruk</td>
-                        <td>Rp20.000</td>
-                        <td>
-                            <Link to={'/edit/${menu.kode}'} className="button is-small is-info">Edit</Link>
-                            <button className="button is-small is-danger">Delete</button>
-                        </td>
-                    </tr>    
-                </tbody>
-
             </table>
         </div>
     )
