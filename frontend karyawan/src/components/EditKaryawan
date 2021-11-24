@@ -1,0 +1,93 @@
+import React from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import {useHistory, useParams} from 'react-router-dom';
+
+const EditKaryawan = () => {
+    const [id, setID] = useState('');
+    const [nama, setNama] = useState('');
+    const [jabatan, setJabatan] = useState('');
+    const [tahun_masuk, setTahunMasuk] = useState('');
+    const history = useHistory();
+    const { id } = useParams();
+
+    const updateKaryawan = async (e) =>{
+        e.preventDefault();
+        await axios.patch(`http://localhost:3000/karyawan/${id}`,{
+            id: id,
+            nama : nama,
+            jabatan : jabatan,
+            tahun_masuk : tahun_masuk
+        });
+        history.push("/")
+    }
+
+    useEffect(() => {
+        getKaryawanById();
+    }, []);
+
+    const getKaryawanById = async () => {
+        const response = await axios.get(`http://localhost:5000/karyawan/${id}`);
+        setID(response.data.id)
+        setNama(response.data.nama)
+        setJabatan(response.data.jabatan)
+        setTahunMasuk(response.data.tahun_masuk)
+    }
+
+
+    return (
+        <div>
+            <form onSubmit={updateKaryawan}>
+                <div className="field">
+                    <label className="label">ID</label>
+                    <input 
+                        class="input" 
+                        type="text" 
+                        placeholder="ID"
+                        value={id}
+                        onChange={ (e) => setID(e.target.value)}
+                    />
+                </div>
+
+                <div className="field">
+                    <label className="label">Nama</label>
+                    <input 
+                        class="input" 
+                        type="text" 
+                        placeholder="Nama"
+                        value={nama}
+                        onChange={ (e) => setNama(e.target.value)}
+                    />
+                </div>
+
+                <div className="field">
+                    <label className="label">Jabatan</label>
+                    <input 
+                        class="input" 
+                        type="text" 
+                        placeholder="Jabatan"
+                        value={jabatan}
+                        onChange={ (e) => setJabatan(e.target.value)}
+                    />
+                </div>
+
+                <div className="field">
+                    <label className="label">Tahun Masuk</label>
+                    <input 
+                        class="input" 
+                        type="text" 
+                        placeholder="Tahun Masuk"
+                        value={tahun_masuk}
+                        onChange={ (e) => setTahunMasuk(e.target.value)}
+                    />
+                </div>
+
+                <div>
+                    <button className="button is-primary">Update</button>
+                </div>
+            </form>
+        </div>
+    )
+}
+
+export default EditKaryawan
