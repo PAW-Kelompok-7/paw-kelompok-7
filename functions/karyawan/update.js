@@ -1,6 +1,6 @@
-/** @type {Func} */
-export default function (app, db) {
-    app.put("/karyawan/:id", function (request, response) {
+import { router, db } from "../index.js";
+
+    router.put("/karyawan/:id", function (request, response) {
         const { nama, tahun_masuk, jabatan } = request.body;
         const { id } = request.params;
 
@@ -14,4 +14,3 @@ export default function (app, db) {
             response.end();
         });
     });
-}

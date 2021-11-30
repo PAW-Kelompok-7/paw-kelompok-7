@@ -1,6 +1,6 @@
-/** @type {Func} */
-export default function (app, db) {
-    app.get("/menu", function (request, response) {
+import { router, db } from "../index.js";
+
+    router.get("/menu", function (request, response) {
         db.all("SELECT * FROM menu", function (err, result) {
             if (err) {
                 console.error(err);
@@ -12,7 +12,7 @@ export default function (app, db) {
         });
     });
 
-    app.get("/menu/:kode", function (request, response) {
+    router.get("/menu/:kode", function (request, response) {
         const { kode } = request.params;
 
         db.all("SELECT * FROM menu WHERE kode=? LIMIT 1", kode, function (err, result) {
@@ -30,4 +30,3 @@ export default function (app, db) {
             response.json(result[0]);
         });
     })
-}

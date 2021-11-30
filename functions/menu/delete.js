@@ -1,6 +1,6 @@
-/** @type {Func} */
-export default function (app, db) {
-    app.delete("/menu/:kode", function (request, response) {
+import { router, db } from "../index.js";
+
+    router.delete("/menu/:kode", function (request, response) {
         const { kode } = request.params;
 
         db.run("DELETE FROM menu WHERE kode=?", kode, function (err) {
@@ -13,4 +13,3 @@ export default function (app, db) {
             response.end();
         })
     });
-}

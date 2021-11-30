@@ -1,37 +1,23 @@
-import express from "express";
+import express, { json, static as serveStaticFiles } from "express";
 import cors from "cors";
 
-import { db } from "./utils/db-setup.js";
-import { PORT } from "./utils/constants.js";
-
-import endpointHandlers from "./functions/index.js";
+import { router } from "./functions/index.js";
 
 const app = express();
 
-app.use(express.json());
+app.use(json());
 app.use(cors());
 
-app.all("/", function (request, response) {
-    const helpText = `Halo!
+// if (process.env.NODE_ENV === "production") {
+    app.use(serveStaticFiles("client/build"));
+// }
 
-Endpoint yang tersedia:
- - GET /menu
- - GET /menu/:kode
- - POST /menu
- - PUT /menu/:kode
- - DELETE /menu/:kode
- - GET /karyawan
- - GET /karyawan/:id
- - POST /karyawan
- - PUT /karyawan/:id
- - DELETE /karyawan/:id`;
+app.use("/api", router);
 
-    response.type("txt").send(helpText);
-});
-
-await endpointHandlers(app, db);
+// Determine the web server port from the dev/prod status
+const port = process.env.NODE_ENV === "production" ? 3000 : 3001;
 
 // Start the web server
-app.listen(PORT, function () {
-    console.log(`Buka http://localhost:${PORT}`);
+app.listen(port, function () {
+    console.log(`Buka http://localhost:${port}`);
 });

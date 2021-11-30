@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const DaftarMenu = () => {
@@ -10,8 +10,11 @@ const DaftarMenu = () => {
         getMenu();
     }, [])
     const getMenu = async() =>{
-        const response = await axios.get('http://localhost:3000/menu');
-        setMenu(response.data)
+        // const response = await axios.get('http://localhost:3000/menu');
+        const response = await fetch('/api/menu').then(rawResults => rawResults.json());
+        // console.log
+
+        setMenu(response);
     }
     return (
         <div>
@@ -26,7 +29,7 @@ const DaftarMenu = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {menu.map((menu, kode) =>(
+                    {menu?.map((menu, kode) =>(
                         <tr key = {menu.kode}>
                         <td>{menu.kode}</td>
                         <td>{menu.nama}</td>

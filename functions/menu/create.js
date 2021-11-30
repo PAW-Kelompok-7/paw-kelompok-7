@@ -1,6 +1,6 @@
-/** @type {Func} */
-export default function (app, db) {
-    app.post("/menu", function (request, response) {
+import { router, db } from "../index.js";
+
+    router.post("/menu", function (request, response) {
         const { nama, harga_rp } = request.body;
 
         db.run("INSERT INTO menu (nama, harga_rp) VALUES (?, ?)", [nama, harga_rp], function (err) {
@@ -13,4 +13,3 @@ export default function (app, db) {
             response.status(201).end();
         });
     });
-}

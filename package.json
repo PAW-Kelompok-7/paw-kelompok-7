@@ -6,7 +6,10 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon main.js"
+    "build": "cd client && npm run build && cd ..",
+    "start": "npm run build && NODE_ENV=production nodemon main.js",
+    "dev:server": "nodemon main.js",
+    "dev:client": "cd client && npm start"
   },
   "repository": {
     "type": "git",

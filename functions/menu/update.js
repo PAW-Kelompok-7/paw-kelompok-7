@@ -1,6 +1,6 @@
-/** @type {Func} */
-export default function (app, db) {
-    app.put("/menu/:kode", function (request, response) {
+import { router, db } from "../index.js";
+
+    router.put("/menu/:kode", function (request, response) {
         const { kode } = request.params;
         const { nama, harga_rp } = request.body;
 
@@ -14,4 +14,3 @@ export default function (app, db) {
             response.end();
         });
     });
-}

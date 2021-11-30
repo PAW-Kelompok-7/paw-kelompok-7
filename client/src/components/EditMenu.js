@@ -1,21 +1,30 @@
-import {useState} from 'react';
-import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import {useState, useEffect} from 'react';
+// import axios from 'axios';
+import {useNavigate, useParams} from 'react-router-dom';
 
-const AddMenu = () => {
+const EditMenu = () => {
     const [nama, setNama] = useState('');
     const [harga, setHarga] = useState('');
     const navigate = useNavigate();
-    
+    const {kode } = useParams();
 
     const saveMenu = async (e) =>{
         e.preventDefault();
-        await axios.post('http://localhost:3000/menu',{
-            nama : nama,
-            harga_rp : harga
-        });
-        navigate('http://localhost:3000');      
+        // await axios.post('http://localhost:3000/menu',{
+        //     nama : nama,
+        //     harga_rp : harga
+        // });;
+        navigate('/');      
     }
+useEffect(() => {
+   getMenuById(); 
+}, [])
+
+    const getMenuById = async() => {
+    // const response = await axios.get('http://localhost:3000/menu/${kode}')
+    // setNama(response.data.nama);
+    // setHarga(response.data.harga);
+}
     return (
         <div>
             <form onSubmit={saveMenu}>
@@ -40,7 +49,7 @@ const AddMenu = () => {
                 </div>
 
                 <div className='field'>
-                    <button className='button is-primary'>Save</button>
+                    <button className='button is-primary'>Update</button>
                 </div>
             </form>
 
@@ -48,4 +57,4 @@ const AddMenu = () => {
     )
 }
 
-export default AddMenu
+export default EditMenu

@@ -1,6 +1,6 @@
-/** @type {Func} */
-export default function (app, db) {
-    app.delete("/karyawan/:id", function (request, response) {
+import { router, db } from "../index.js";
+
+    router.delete("/karyawan/:id", function (request, response) {
         const { id } = request.params;
 
         db.run("DELETE FROM karyawan WHERE id=?", id, function(err) {
@@ -13,4 +13,3 @@ export default function (app, db) {
             response.end();
         });
     });
-}
