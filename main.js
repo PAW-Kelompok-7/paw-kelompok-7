@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 
 import { db } from "./utils/db-setup.js";
 import { PORT } from "./utils/constants.js";
@@ -8,6 +9,7 @@ import endpointHandlers from "./functions/index.js";
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.all("/", function (request, response) {
     const helpText = `Halo!
