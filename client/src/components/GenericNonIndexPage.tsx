@@ -7,7 +7,8 @@ export function GenericNonIndexPage({ title }: { title: string }) {
         <>
             <PageHeader />
             <main className="flex flex-col items-center p-12">
-                <h1 className="text-4xl text-center mb-8">{title}</h1>
+                <h1 className="text-4xl text-center mb-4">{title}</h1>
+                <p className="text-xs mb-8">Klik item berwarna hijau untuk dapat mengedit item tersebut.</p>
                 <Outlet />
             </main>
         </>

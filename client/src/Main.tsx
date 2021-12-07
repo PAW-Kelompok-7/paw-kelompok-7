@@ -15,16 +15,16 @@ export function Main() {
 
     return (
         <BrowserRouter>
-                <PageTitleContextProvider value={{ pageTitle, setPageTitle }}>
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/" element={<GenericNonIndexPage title={pageTitle} />}>
-                            <Route path="karyawan" element={<KaryawanListingPage />} />
-                            <Route element={<p>Hello!!!</p>} />
-
-                </Route>
-            </Routes>
-                </PageTitleContextProvider>
+            <PageTitleContextProvider value={{ pageTitle, setPageTitle }}>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/" element={<GenericNonIndexPage title={pageTitle} />}>
+                        <Route path="karyawan" element={<KaryawanListingPage />} />
+                        <Route path="menu" element={null} />
+                        {/* <Route element={<p>Hello!!!</p>} /> */}
+                    </Route>
+                </Routes>
+            </PageTitleContextProvider>
         </BrowserRouter>
     );
 }

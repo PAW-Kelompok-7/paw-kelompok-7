@@ -10,7 +10,7 @@ function NavItem({ className, ...props }: NavLinkProps) {
 
 export function PageHeader() {
     return (
-        <header className="flex justify-between bg-black rounded-b-xl items-center text-white px-8 py-4">
+        <header className="flex justify-between bg-black rounded-b-xl items-center text-white px-8 py-4 shadow-lg">
             <Link to="/" className="flex items-center hover:underline">
                 <MainLogoIcon className="block fill-current text-white h-8 w-auto mr-2" />
                 <p className="block text-xl">TETI Resto</p>

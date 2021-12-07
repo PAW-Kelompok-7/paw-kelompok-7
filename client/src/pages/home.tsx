@@ -10,10 +10,10 @@ function LinkButton({ className, ...props }: LinkProps) {
 
 export function HomePage() {
     return (
-        <main className="flex flex-col items-center">
-            <MainLogo className="block" />
-            <h1 className="text-6xl font-bold">TETI Resto</h1>
-            <p className="text-3xl">Dasbor</p>
+        <main className="flex flex-col items-center min-h-screen justify-center">
+            <MainLogo className="block mb-8" />
+            <h1 className="text-6xl font-bold mb-4">TETI Resto</h1>
+            <p className="text-3xl mb-8">Dasbor</p>
             <div className="flex">
                 <LinkButton to="/karyawan">Karyawan</LinkButton>
                 <LinkButton to="/menu">Menu</LinkButton>
