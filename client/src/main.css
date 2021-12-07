@@ -19,4 +19,8 @@
     button {
         @apply rounded;
     }
+
+    .bordered-table :is(th, td) {
+        @apply border border-gray-500;
+    }
 }
