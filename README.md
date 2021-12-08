@@ -3,7 +3,7 @@
 Monorepo ini merupakan repositori gabungan *front-end* dengan *back-end* dari proyek web manajemen restoran.
 
 ## Tautan video demonstrasi
-[Buka video demonstrasi di sini](https://drive.google.com/file/d/13yGa86EFfeQoZYLqCxajzFRP1oZIsrN5/view?usp=sharing)
+[Buka video demonstrasi di sini](https://drive.google.com/file/d/13yGa86EFfeQoZYLqCxajzFRP1oZIsrN5/view?usp=sharing) (akses hanya dengan menggunakan email UGM)
 
 ## Deskripsi *front-end*
 *(to be decided)* <!-- Mengandung "React"/"CRA"? -->
